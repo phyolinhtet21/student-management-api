@@ -115,6 +115,21 @@ def edit_student(student_id: int, student: Student):
 
     return {"message": "Student Not Found"}
 
+@app.delete("/students/{student_id}")
+def delete_student(student_id: int):
+
+    for student in students:
+        if student["id"] == student_id:
+            students.remove(student)
+
+            return {
+                "message": "Student Deleted Successfully"
+            }
+
+    return {
+        "message": "Student Not Found"
+    }
+
 # Get Single Student
 @app.get("/students/{student_id}")
 def get_student(student_id: int):
@@ -123,3 +138,4 @@ def get_student(student_id: int):
             return student
 
     return {"message": "Student Not Found"}
+    
